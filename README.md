@@ -8,7 +8,7 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-## :tools: Rodando o projeto
+## ⚙ Rodando o projeto
 
 - expo install
 
