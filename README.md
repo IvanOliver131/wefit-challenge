@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="NLW-eSports" title="" src="https://raw.githubusercontent.com/IvanOliver131/wefit-challenge/58a27076654e677c74014846e704c86e4fbbdeed/wefit-challenge/src/assets/logo-wefit.png" width="250px" />
+    <img alt="WefitChallenge" title="" src="https://github.com/IvanOliver131/wefit-challenge/blob/master/src/assets/logo-wefit.png" width="250px" />
 </h1>
 <p align="center">
   <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -8,7 +8,7 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-## Rodando o projeto
+## :tools: Rodando o projeto
 
 - expo install
 
