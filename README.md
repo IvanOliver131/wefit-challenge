@@ -12,6 +12,9 @@
 
 ```
 expo install
+```
+
+```
 expo start || expo start --tunnel
 ```
 
