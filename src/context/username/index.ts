@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const usernameSlice = createSlice({
   name: "username",
   initialState: {
-    username: "facebook",
+    username: "",
   },
   reducers: {
     setUsername(state, action: PayloadAction<string>) {

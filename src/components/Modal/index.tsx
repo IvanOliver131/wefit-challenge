@@ -6,6 +6,9 @@ import {
   Text,
   TouchableOpacity,
   View,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Formik } from "formik";
@@ -13,6 +16,7 @@ import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
 import { setUsername } from "../../context/username";
+import { setShowNavbar } from "../../context/showNavbar";
 
 const { height } = Dimensions.get("window");
 
@@ -28,11 +32,13 @@ export function Modal({ show, close }) {
   function handleSaveUsername({ username }) {
     dispatch(setUsername(username));
     close();
+    dispatch(setShowNavbar(true));
     Keyboard.dismiss();
   }
 
   function handleCancel() {
     close();
+    dispatch(setShowNavbar(true));
     Keyboard.dismiss();
   }
 
@@ -109,31 +115,36 @@ export function Modal({ show, close }) {
           onSubmit={(values) => handleSaveUsername(values)}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <>
-              <Text style={styles.title}>Alterar usuário selecionado</Text>
-              <TextInput
-                label="Nome do usuário"
-                style={styles.inputUsername}
-                onChangeText={handleChange("username")}
-                onBlur={handleBlur("username")}
-                value={values.username}
-              />
+            <KeyboardAvoidingView
+              behavior={Platform.OS == "ios" ? "padding" : "height"}
+              keyboardVerticalOffset={300}
+            >
+              <ScrollView>
+                <Text style={styles.title}>Alterar usuário selecionado</Text>
+                <TextInput
+                  label="Nome do usuário"
+                  style={styles.inputUsername}
+                  onChangeText={handleChange("username")}
+                  onBlur={handleBlur("username")}
+                  value={values.username}
+                />
 
-              <View style={styles.buttonsFooter}>
-                <TouchableOpacity
-                  style={styles.btnCancel}
-                  onPress={handleCancel}
-                >
-                  <Text style={styles.textBtnCancel}>CANCELAR</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.btn}
-                  onPress={() => handleSubmit()}
-                >
-                  <Text style={styles.textBtn}>SALVAR</Text>
-                </TouchableOpacity>
-              </View>
-            </>
+                <View style={styles.buttonsFooter}>
+                  <TouchableOpacity
+                    style={styles.btnCancel}
+                    onPress={handleCancel}
+                  >
+                    <Text style={styles.textBtnCancel}>CANCELAR</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => handleSubmit()}
+                  >
+                    <Text style={styles.textBtn}>SALVAR</Text>
+                  </TouchableOpacity>
+                </View>
+              </ScrollView>
+            </KeyboardAvoidingView>
           )}
         </Formik>
       </Animated.View>

@@ -1,7 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Details } from "../screens/Details";
 import { THEME } from "../theme";
+
+import { Details } from "../screens/Details";
 import { Tabs } from "./tabs";
 
 const Stack = createNativeStackNavigator();

@@ -25,11 +25,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <Background>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor="transparent"
-          // translucent
-        />
+        <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
         {fontsLoaded ? <Routes /> : <Loading />}
       </Background>

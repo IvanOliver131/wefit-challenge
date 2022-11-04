@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   modal: {
     bottom: 0,
     position: "absolute",
-    height: "30%",
+    height: "35%",
     backgroundColor: "#fff",
     width: "100%",
     borderTopLeftRadius: 20,

@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingBottom: 18,
+    paddingBottom: 20,
     marginTop: 24,
   },
   urlText: {

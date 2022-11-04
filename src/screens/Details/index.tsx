@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setFavoritesRepositories } from "../../context/favoritesRepositories";
 import { RepositoryProps } from "../../components/CardRepository";
+import { SaveDataInStorage } from "../../utils/SaveDataInStorage";
 
 export function Details() {
   const dispatch = useDispatch();
@@ -33,16 +34,20 @@ export function Details() {
     }
   }, []);
 
-  function handleRemoveFavorite(id: number) {
+  async function handleRemoveFavorite(id: number) {
     const newFavorites = favoritesRepositories.filter(
       (repository: RepositoryProps) => repository.id !== id
     );
-
+    await SaveDataInStorage("favorites", [...newFavorites]);
     dispatch(setFavoritesRepositories([...newFavorites]));
     setFavorite(false);
   }
 
-  function handleAddToFavoriteList(repository: RepositoryProps) {
+  async function handleAddToFavoriteList(repository: RepositoryProps) {
+    await SaveDataInStorage("favorites", [
+      ...favoritesRepositories,
+      repository,
+    ]);
     dispatch(setFavoritesRepositories([...favoritesRepositories, repository]));
     setFavorite(true);
   }

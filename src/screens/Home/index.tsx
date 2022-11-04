@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, FlatList, Text, View } from "react-native";
+import { Alert, AsyncStorage, FlatList, Text, View } from "react-native";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -15,6 +15,8 @@ import { Modal } from "../../components/Modal";
 import { setFavoritesRepositories } from "../../context/favoritesRepositories";
 
 import { styles } from "./styles";
+import { setShowNavbar } from "../../context/showNavbar";
+import { SaveDataInStorage } from "../../utils/SaveDataInStorage";
 
 export function Home() {
   const dispatch = useDispatch();
@@ -25,7 +27,27 @@ export function Home() {
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
   const [modal, setModal] = useState(false);
 
-  function handleAddToFavoriteList(repository: RepositoryProps) {
+  async function getRepos() {
+    try {
+      const { data } = await axios.get(
+        `https://api.github.com/users/${username}/repos`
+      );
+      setRepositories(data);
+    } catch (error) {
+      setRepositories([]);
+    }
+  }
+
+  useEffect(() => {
+    getRepos();
+  }, [username]);
+
+  function showModal(show: boolean) {
+    setModal(show);
+    dispatch(setShowNavbar(false));
+  }
+
+  async function handleAddToFavoriteList(repository: RepositoryProps) {
     for (const favoriteRepository of favoritesRepositories) {
       if (favoriteRepository.id === repository.id) {
         return Alert.alert(
@@ -35,28 +57,16 @@ export function Home() {
         );
       }
     }
+    await SaveDataInStorage("favorites", [
+      ...favoritesRepositories,
+      repository,
+    ]);
     dispatch(setFavoritesRepositories([...favoritesRepositories, repository]));
   }
 
-  async function getRepos() {
-    try {
-      const { data } = await axios.get(
-        `https://api.github.com/users/${username}/repos`
-      );
-      setRepositories(data);
-    } catch (error) {
-      setRepositories([]);
-      Alert.alert("Nenhum repositório encontrado");
-    }
-  }
-
-  useEffect(() => {
-    getRepos();
-  }, [username]);
-
   return (
     <Background>
-      <Header setModal={setModal} />
+      <Header showModal={showModal} />
       {repositories.length === 0 ? (
         <View style={styles.containerEmpty}>
           <Text style={styles.textFavoriteListEmpty}>
