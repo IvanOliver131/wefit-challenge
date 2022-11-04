@@ -8,11 +8,25 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-## :tools: Rodando o projeto
+## ⚙ Rodando o projeto
 
-- expo install
+```
+expo install
+```
 
-- expo start || expo start --tunnel
+```
+expo start || expo start --tunnel
+```
+
+## 🔥 Gerar APK
+
+```
+expo build:android
+```
+
+```
+expo build:ios
+```
 
 ## :rocket: Tecnologias
 
