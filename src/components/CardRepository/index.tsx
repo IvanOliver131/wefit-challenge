@@ -16,9 +16,15 @@ export interface RepositoryProps {
 
 interface CardRepositoryProps {
   data: RepositoryProps;
+  handleAddToFavoriteList?: (repository: RepositoryProps) => void;
+  favoriteScreen: boolean;
 }
 
-export function CardRepository({ data }: CardRepositoryProps) {
+export function CardRepository({
+  data,
+  handleAddToFavoriteList,
+  favoriteScreen,
+}: CardRepositoryProps) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -26,17 +32,24 @@ export function CardRepository({ data }: CardRepositoryProps) {
         <Image source={miniLogo} style={styles.logo} />
       </View>
       <View style={styles.divider} />
-      <Text style={styles.description}>{data.description}</Text>
+      <Text style={styles.description} numberOfLines={2}>
+        {data.description}
+      </Text>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.button}>
-          <Ionicons
-            name="star"
-            color={THEME.COLORS.YELLOW}
-            size={20}
-            style={styles.child}
-          />
-          <Text style={styles.buttonText}>Favoritar</Text>
-        </TouchableOpacity>
+        {!favoriteScreen && (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleAddToFavoriteList(data)}
+          >
+            <Ionicons
+              name="star"
+              color={THEME.COLORS.YELLOW}
+              size={20}
+              style={styles.child}
+            />
+            <Text style={styles.buttonText}>Favoritar</Text>
+          </TouchableOpacity>
+        )}
         <View style={styles.favoriteCount}>
           <Ionicons
             name="star"

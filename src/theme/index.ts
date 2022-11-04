@@ -6,6 +6,7 @@ export const THEME = {
 
     TEXT: "#000000",
     SUB_TEXT: "#9A9A9A",
+    BUTTON_TEXT: "#1976D2",
 
     CAPTION_500: "#71717A",
     CAPTION_400: "#A1A1AA",

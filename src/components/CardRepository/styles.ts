@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     color: THEME.COLORS.SUB_TEXT,
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
+    height: 60,
   },
   footer: {
     alignItems: "center",

@@ -1,4 +1,6 @@
 import { StatusBar } from "react-native";
+import { Provider } from "react-redux";
+import { store } from "./src/context/store";
 
 import {
   useFonts,
@@ -21,14 +23,16 @@ export default function App() {
   });
 
   return (
-    <Background>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        // translucent
-      />
+    <Provider store={store}>
+      <Background>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+          // translucent
+        />
 
-      {fontsLoaded ? <Routes /> : <Loading />}
-    </Background>
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </Background>
+    </Provider>
   );
 }
