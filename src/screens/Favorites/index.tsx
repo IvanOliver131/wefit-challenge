@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
 import { useSelector } from "react-redux";
 
@@ -20,19 +20,29 @@ export function Favorites() {
   );
 
   return (
-    <Background>
-      <Header setModal={setModal} />
-      <FlatList
-        data={favoritesRepositories}
-        keyExtractor={(item: RepositoryProps) => String(item.id)}
-        renderItem={({ item }) => (
-          <CardRepository data={item} favoriteScreen={true} />
-        )}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentList}
-      />
+    <>
+      {favoritesRepositories.length === 0 ? (
+        <View style={styles.container}>
+          <Text style={styles.textFavoriteListEmpty}>
+            Nenhum repositório salvo nos favoritos... 😅
+          </Text>
+        </View>
+      ) : (
+        <Background>
+          <Header setModal={setModal} />
+          <FlatList
+            data={favoritesRepositories}
+            keyExtractor={(item: RepositoryProps) => String(item.id)}
+            renderItem={({ item }) => (
+              <CardRepository data={item} favoriteScreen={true} />
+            )}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.contentList}
+          />
 
-      <Modal show={modal} close={() => setModal(false)} />
-    </Background>
+          <Modal show={modal} close={() => setModal(false)} />
+        </Background>
+      )}
+    </>
   );
 }

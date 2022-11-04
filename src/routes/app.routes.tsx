@@ -1,34 +1,31 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Favorites } from "../screens/Favorites";
-import { Home } from "../screens/Home";
+import { Details } from "../screens/Details";
 import { THEME } from "../theme";
+import { Tabs } from "./tabs";
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export function AppRoutes() {
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === "Respositórios") {
-            iconName = "logo-github";
-          } else if (route.name === "Favoritos") {
-            iconName = "star";
-          }
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: THEME.COLORS.ACTIVE,
-        tabBarInactiveTintColor: THEME.COLORS.DESACTIVE,
-        headerShown: false,
-      })}
-    >
-      <Tab.Screen name="Respositórios" component={Home} />
-      <Tab.Screen name="Favoritos" component={Favorites} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Tabs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Respositórios" component={Tabs} />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{
+          headerTitle: "Detalhes",
+          headerTintColor: THEME.COLORS.WHITE,
+          headerStyle: {
+            backgroundColor: "black",
+          },
+        }}
+      />
+    </Stack.Navigator>
   );
 }

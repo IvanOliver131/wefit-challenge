@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Alert, FlatList } from "react-native";
+import { Alert, FlatList, Text, View } from "react-native";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 import { Background } from "../../components/Background";
 import {
@@ -23,12 +24,6 @@ export function Home() {
   );
   const [repositories, setRepositories] = useState<RepositoryProps[]>([]);
   const [modal, setModal] = useState(false);
-  //  ************* FALTA IMPLEMENTAR
-  // const navigation = useNavigation();
-
-  // function handleOpenGame({ id, title, bannerUrl }: GameCardProps) {
-  //   navigation.navigate("game", { id, title, bannerUrl });
-  // }
 
   function handleAddToFavoriteList(repository: RepositoryProps) {
     for (const favoriteRepository of favoritesRepositories) {
@@ -43,30 +38,46 @@ export function Home() {
     dispatch(setFavoritesRepositories([...favoritesRepositories, repository]));
   }
 
+  async function getRepos() {
+    try {
+      const { data } = await axios.get(
+        `https://api.github.com/users/${username}/repos`
+      );
+      setRepositories(data);
+    } catch (error) {
+      setRepositories([]);
+      Alert.alert("Nenhum repositório encontrado");
+    }
+  }
+
   useEffect(() => {
-    fetch(`https://api.github.com/users/${username}/repos`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRepositories(data);
-      });
+    getRepos();
   }, [username]);
 
   return (
     <Background>
       <Header setModal={setModal} />
-      <FlatList
-        data={repositories}
-        keyExtractor={(item: RepositoryProps) => String(item.id)}
-        renderItem={({ item }) => (
-          <CardRepository
-            data={item}
-            handleAddToFavoriteList={handleAddToFavoriteList}
-            favoriteScreen={false}
-          />
-        )}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentList}
-      />
+      {repositories.length === 0 ? (
+        <View style={styles.containerEmpty}>
+          <Text style={styles.textFavoriteListEmpty}>
+            Nenhum repositório encontrado... 😅
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          data={repositories}
+          keyExtractor={(item: RepositoryProps) => String(item.id)}
+          renderItem={({ item }) => (
+            <CardRepository
+              data={item}
+              handleAddToFavoriteList={handleAddToFavoriteList}
+              favoriteScreen={false}
+            />
+          )}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.contentList}
+        />
+      )}
 
       <Modal show={modal} close={() => setModal(false)} />
     </Background>

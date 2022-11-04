@@ -6,13 +6,10 @@ export const THEME = {
 
     TEXT: "#000000",
     SUB_TEXT: "#9A9A9A",
+    POINTER: "#F22828",
     BUTTON_TEXT: "#1976D2",
 
-    CAPTION_500: "#71717A",
-    CAPTION_400: "#A1A1AA",
     CAPTION_300: "#D4D4D8",
-
-    SHAPE: "#2A2634",
 
     ACTIVE: "#1976D2",
     DESACTIVE: "#C4C4C4",

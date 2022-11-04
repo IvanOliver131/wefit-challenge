@@ -9,12 +9,19 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     marginBottom: 12,
+    elevation: 5,
+    shadowColor: "black",
   },
   header: {
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
+    fontSize: THEME.FONT_SIZE.MD,
+    fontFamily: THEME.FONT_FAMILY.REGULAR,
     paddingVertical: 12,
+  },
+  titleBold: {
+    fontFamily: THEME.FONT_FAMILY.BOLD,
   },
   divider: {
     borderBottomColor: THEME.COLORS.CAPTION_300,
@@ -43,7 +50,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#FAF3DC",
     borderRadius: 4,
     padding: 6,
-    gap: 2,
   },
   buttonText: {
     color: THEME.COLORS.YELLOW,
@@ -51,12 +57,10 @@ export const styles = StyleSheet.create({
   favoriteCount: {
     alignItems: "center",
     flexDirection: "row",
-    gap: 2,
   },
   codeLanguage: {
     alignItems: "center",
     flexDirection: "row",
-    gap: 2,
   },
   child: {
     marginRight: 6,

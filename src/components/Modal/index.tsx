@@ -31,6 +31,11 @@ export function Modal({ show, close }) {
     Keyboard.dismiss();
   }
 
+  function handleCancel() {
+    close();
+    Keyboard.dismiss();
+  }
+
   const openModal = () => {
     Animated.sequence([
       Animated.timing(state.container, {
@@ -115,7 +120,10 @@ export function Modal({ show, close }) {
               />
 
               <View style={styles.buttonsFooter}>
-                <TouchableOpacity style={styles.btnCancel} onPress={close}>
+                <TouchableOpacity
+                  style={styles.btnCancel}
+                  onPress={handleCancel}
+                >
                   <Text style={styles.textBtnCancel}>CANCELAR</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
