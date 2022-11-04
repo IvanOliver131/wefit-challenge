@@ -26,13 +26,13 @@ export function Tabs() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarStyle: showNavbar ? {} : { display: "none" },
-        tabBarOptions: {
-          style: {
-            height: 45,
-          },
-        },
+        tabBarStyle: showNavbar ? { height: 60 } : { display: "none" },
         tabBarActiveTintColor: THEME.COLORS.ACTIVE,
+        tabBarLabelStyle: {
+          fontSize: 14,
+          lineHeight: 15,
+          marginBottom: 4,
+        },
         tabBarInactiveTintColor: THEME.COLORS.DESACTIVE,
         headerShown: false,
       })}
