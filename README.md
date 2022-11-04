@@ -18,6 +18,16 @@ expo install
 expo start || expo start --tunnel
 ```
 
+## 🔥 Gerar APK
+
+```
+expo build:android
+```
+
+```
+expo build:ios
+```
+
 ## :rocket: Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
