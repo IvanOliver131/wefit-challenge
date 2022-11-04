@@ -3,6 +3,7 @@ import { Alert, AsyncStorage, FlatList, Text, View } from "react-native";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import { Background } from "../../components/Background";
@@ -70,7 +71,8 @@ export function Home() {
       {repositories.length === 0 ? (
         <View style={styles.containerEmpty}>
           <Text style={styles.textFavoriteListEmpty}>
-            Nenhum repositório encontrado... 😅
+            Nenhum repositório encontrado... Busque por um repositório clicando
+            no icone acima <Ionicons name="settings" size={20} color="black" />
           </Text>
         </View>
       ) : (

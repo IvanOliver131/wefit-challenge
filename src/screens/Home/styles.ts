@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
   textFavoriteListEmpty: {
     fontSize: THEME.FONT_SIZE.MD,
     fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
+    textAlign: "center",
   },
   contentList: {
     paddingHorizontal: 16,
