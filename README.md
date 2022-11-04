@@ -10,9 +10,10 @@
 
 ## ⚙ Rodando o projeto
 
-- expo install
-
-- expo start || expo start --tunnel
+```
+expo install
+expo start || expo start --tunnel
+```
 
 ## :rocket: Tecnologias
 
