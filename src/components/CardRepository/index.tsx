@@ -44,7 +44,7 @@ export function CardRepository({
   return (
     <TouchableOpacity onPress={() => handleOpenDetails(data)}>
       <View style={darkMode ? stylesDark.container : styles.container}>
-        <View style={darkMode ? stylesDark.header : styles.header}>
+        <View style={styles.header}>
           <Text
             numberOfLines={1}
             style={darkMode ? stylesDark.title : styles.title}

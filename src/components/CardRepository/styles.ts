@@ -98,14 +98,6 @@ export const stylesDark = StyleSheet.create({
     elevation: 5,
     shadowColor: "black",
   },
-  header: {
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    fontSize: THEME_DARK.FONT_SIZE.MD,
-    fontFamily: THEME_DARK.FONT_FAMILY.REGULAR,
-    paddingVertical: 12,
-  },
   title: {
     color: THEME_DARK.COLORS.TEXT,
     fontFamily: THEME_DARK.FONT_FAMILY.REGULAR,
@@ -117,58 +109,5 @@ export const stylesDark = StyleSheet.create({
   divider: {
     borderBottomColor: THEME_DARK.COLORS.DIVIDER,
     borderBottomWidth: 1,
-  },
-  description: {
-    paddingVertical: 12,
-    color: THEME_DARK.COLORS.SUB_TEXT,
-    fontSize: THEME_DARK.FONT_SIZE.SM,
-    fontFamily: THEME_DARK.FONT_FAMILY.REGULAR,
-    height: 60,
-  },
-  footer: {
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    paddingVertical: 12,
-  },
-  logo: {
-    width: 36,
-    height: 36,
-  },
-  button: {
-    alignItems: "center",
-    flexDirection: "row",
-    backgroundColor: "#FAF3DC",
-    borderRadius: 4,
-    padding: 6,
-  },
-  buttonDesfavorite: {
-    alignItems: "center",
-    flexDirection: "row",
-    backgroundColor: THEME_DARK.COLORS.WHITE,
-    borderWidth: 1,
-    borderColor: THEME_DARK.COLORS.TEXT,
-    borderRadius: 4,
-    padding: 6,
-  },
-  buttonText: {
-    color: THEME_DARK.COLORS.YELLOW,
-  },
-  buttonTextDesfavorite: {
-    color: THEME_DARK.COLORS.TEXT,
-  },
-  favoriteCount: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  codeLanguage: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  child: {
-    marginRight: 6,
-  },
-  childText: {
-    color: THEME_DARK.COLORS.SUB_TEXT,
   },
 });

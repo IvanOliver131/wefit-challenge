@@ -45,7 +45,7 @@ export function Home() {
   }
 
   async function getTheme() {
-    const isDarkMode = GetDataInStorage("darkmode");
+    const isDarkMode = await GetDataInStorage("darkmode");
 
     if (isDarkMode) {
       dispatch(setDarkMode(true));

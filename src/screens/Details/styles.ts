@@ -92,9 +92,6 @@ export const styles = StyleSheet.create({
 });
 
 export const stylesDark = StyleSheet.create({
-  container: {
-    height: "100%",
-  },
   details: {
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -105,9 +102,6 @@ export const stylesDark = StyleSheet.create({
     fontFamily: THEME_DARK.FONT_FAMILY.REGULAR,
     fontSize: THEME_DARK.FONT_SIZE.MD,
     marginBottom: 16,
-  },
-  titleBold: {
-    fontFamily: THEME_DARK.FONT_FAMILY.BOLD,
   },
   description: {
     color: THEME_DARK.COLORS.SUB_TEXT,
@@ -132,13 +126,6 @@ export const stylesDark = StyleSheet.create({
     bottom: 0,
     position: "absolute",
   },
-  urlContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 20,
-    marginTop: 24,
-  },
   urlText: {
     color: THEME_DARK.COLORS.BUTTON_TEXT,
     fontFamily: THEME_DARK.FONT_FAMILY.SEMI_BOLD,
@@ -155,9 +142,6 @@ export const stylesDark = StyleSheet.create({
     borderRadius: 4,
     padding: 6,
     gap: 2,
-  },
-  child: {
-    marginRight: 6,
   },
   buttonText: {
     color: THEME_DARK.COLORS.TEXT,

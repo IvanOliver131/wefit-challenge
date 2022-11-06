@@ -90,14 +90,7 @@ export const stylesDark = StyleSheet.create({
     paddingLeft: 25,
     paddingRight: 25,
   },
-  indicator: {
-    width: 50,
-    height: 5,
-    backgroundColor: "#ccc",
-    borderRadius: 50,
-    alignSelf: "center",
-    marginTop: 5,
-  },
+
   title: {
     marginTop: 50,
     fontSize: THEME_DARK.FONT_SIZE.MD,
@@ -109,12 +102,7 @@ export const stylesDark = StyleSheet.create({
     backgroundColor: THEME_DARK.COLORS.BACKGROUND_INPUT_MODAL,
     color: THEME_DARK.COLORS.TEXT,
   },
-  buttonsFooter: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
+
   btnCancel: {
     width: "48%",
     height: 50,

@@ -66,13 +66,10 @@ export function Details() {
 
   return (
     <Background>
-      <View style={darkMode ? stylesDark.container : styles.container}>
+      <View style={styles.container}>
         <View style={darkMode ? stylesDark.details : styles.details}>
           <Text style={darkMode ? stylesDark.title : styles.title}>
-            {fullNames[0]}/
-            <Text style={darkMode ? stylesDark.titleBold : styles.titleBold}>
-              {fullNames[1]}
-            </Text>
+            {fullNames[0]}/<Text style={styles.titleBold}>{fullNames[1]}</Text>
           </Text>
           <Text style={darkMode ? stylesDark.description : styles.description}>
             {repository.description}
@@ -94,7 +91,7 @@ export function Details() {
         </View>
         <View style={darkMode ? stylesDark.footer : styles.footer}>
           <TouchableOpacity
-            style={darkMode ? stylesDark.urlContainer : styles.urlContainer}
+            style={styles.urlContainer}
             onPress={() => handleOpenURL(repository.svn_url)}
           >
             <Text style={darkMode ? stylesDark.urlText : styles.urlText}>
