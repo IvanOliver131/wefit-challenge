@@ -14,14 +14,16 @@ import { TextInput } from "react-native-paper";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
 
-import { styles } from "./styles";
+import { styles, stylesDark } from "./styles";
 import { setUsername } from "../../context/username";
 import { setShowNavbar } from "../../context/showNavbar";
+import { useSelector } from "react-redux";
 
 const { height } = Dimensions.get("window");
 
 export function Modal({ show, close }) {
   const dispatch = useDispatch();
+  const { darkMode } = useSelector((state: any) => state.darkMode);
 
   const [state, setState] = useState({
     opacity: new Animated.Value(0),
@@ -93,7 +95,7 @@ export function Modal({ show, close }) {
   return (
     <Animated.View
       style={[
-        styles.container,
+        darkMode ? stylesDark.container : styles.container,
         {
           opacity: state.opacity,
           transform: [{ translateY: state.container }],
@@ -102,7 +104,7 @@ export function Modal({ show, close }) {
     >
       <Animated.View
         style={[
-          styles.modal,
+          darkMode ? stylesDark.modal : styles.modal,
           {
             transform: [{ translateY: state.modal }],
           },
@@ -120,10 +122,14 @@ export function Modal({ show, close }) {
               keyboardVerticalOffset={300}
             >
               <ScrollView>
-                <Text style={styles.title}>Alterar usuário selecionado</Text>
+                <Text style={darkMode ? stylesDark.title : styles.title}>
+                  Alterar usuário selecionado
+                </Text>
                 <TextInput
                   label="Nome do usuário"
-                  style={styles.inputUsername}
+                  style={
+                    darkMode ? stylesDark.inputUsername : styles.inputUsername
+                  }
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
@@ -131,16 +137,28 @@ export function Modal({ show, close }) {
 
                 <View style={styles.buttonsFooter}>
                   <TouchableOpacity
-                    style={styles.btnCancel}
+                    style={darkMode ? stylesDark.btnCancel : styles.btnCancel}
                     onPress={handleCancel}
                   >
-                    <Text style={styles.textBtnCancel}>CANCELAR</Text>
+                    <Text
+                      style={
+                        darkMode
+                          ? stylesDark.textBtnCancel
+                          : styles.textBtnCancel
+                      }
+                    >
+                      CANCELAR
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={styles.btn}
+                    style={darkMode ? stylesDark.btn : styles.btn}
                     onPress={() => handleSubmit()}
                   >
-                    <Text style={styles.textBtn}>SALVAR</Text>
+                    <Text
+                      style={darkMode ? stylesDark.textBtn : styles.textBtn}
+                    >
+                      SALVAR
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </ScrollView>

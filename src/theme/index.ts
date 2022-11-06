@@ -36,6 +36,7 @@ export const THEME_DARK = {
     LG: 20,
   },
 };
+
 export const THEME = {
   COLORS: {
     BACKGROUND: "#F6F6F5",

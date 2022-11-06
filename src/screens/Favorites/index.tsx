@@ -16,11 +16,12 @@ import { setFavoritesRepositories } from "../../context/favoritesRepositories";
 import { setShowNavbar } from "../../context/showNavbar";
 import { GetDataInStorage } from "../../utils/GetDataInStorage";
 
-import { styles } from "./styles";
+import { styles, stylesDark } from "./styles";
 
 export function Favorites() {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
+  const { darkMode } = useSelector((state: any) => state.darkMode);
   const { favoritesRepositories } = useSelector(
     (state: any) => state.favoritesRepositories
   );
@@ -49,7 +50,13 @@ export function Favorites() {
       <Header showModal={showModal} />
       {favoritesRepositories.length === 0 ? (
         <View style={styles.container}>
-          <Text style={styles.textFavoriteListEmpty}>
+          <Text
+            style={
+              darkMode
+                ? stylesDark.textFavoriteListEmpty
+                : styles.textFavoriteListEmpty
+            }
+          >
             Nenhum repositório salvo nos favoritos... 😅
           </Text>
         </View>

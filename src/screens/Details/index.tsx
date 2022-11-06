@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { DetailsParams } from "../../@types/navigation";
 import { Background } from "../../components/Background";
 
-import { styles } from "./styles";
+import { styles, stylesDark } from "./styles";
 import { THEME } from "../../theme";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ import { SaveDataInStorage } from "../../utils/SaveDataInStorage";
 
 export function Details() {
   const dispatch = useDispatch();
+  const { darkMode } = useSelector((state: any) => state.darkMode);
   const route = useRoute();
   const [isFavorite, setFavorite] = useState(false);
   const repository = route.params as DetailsParams;
@@ -65,29 +66,40 @@ export function Details() {
 
   return (
     <Background>
-      <View style={styles.container}>
-        <View style={styles.details}>
-          <Text style={styles.title}>
-            {fullNames[0]}/<Text style={styles.titleBold}>{fullNames[1]}</Text>
+      <View style={darkMode ? stylesDark.container : styles.container}>
+        <View style={darkMode ? stylesDark.details : styles.details}>
+          <Text style={darkMode ? stylesDark.title : styles.title}>
+            {fullNames[0]}/
+            <Text style={darkMode ? stylesDark.titleBold : styles.titleBold}>
+              {fullNames[1]}
+            </Text>
           </Text>
-          <Text style={styles.description}>{repository.description}</Text>
+          <Text style={darkMode ? stylesDark.description : styles.description}>
+            {repository.description}
+          </Text>
 
-          <View style={styles.codeLanguage}>
+          <View
+            style={darkMode ? stylesDark.codeLanguage : styles.codeLanguage}
+          >
             <Ionicons
               name="ellipse"
               color={THEME.COLORS.POINTER}
               size={12}
               style={styles.child}
             />
-            <Text style={styles.language}>{repository.language}</Text>
+            <Text style={darkMode ? stylesDark.language : styles.language}>
+              {repository.language}
+            </Text>
           </View>
         </View>
-        <View style={styles.footer}>
+        <View style={darkMode ? stylesDark.footer : styles.footer}>
           <TouchableOpacity
-            style={styles.urlContainer}
+            style={darkMode ? stylesDark.urlContainer : styles.urlContainer}
             onPress={() => handleOpenURL(repository.svn_url)}
           >
-            <Text style={styles.urlText}>Ver repositório</Text>
+            <Text style={darkMode ? stylesDark.urlText : styles.urlText}>
+              Ver repositório
+            </Text>
             <Ionicons
               name="link-outline"
               color={THEME.COLORS.BUTTON_TEXT}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, StatusBar, Text, View } from "react-native";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -15,13 +15,16 @@ import { Header } from "../../components/Header";
 import { Modal } from "../../components/Modal";
 import { setFavoritesRepositories } from "../../context/favoritesRepositories";
 
-import { styles } from "./styles";
+import { styles, stylesDark } from "./styles";
 import { setShowNavbar } from "../../context/showNavbar";
 import { SaveDataInStorage } from "../../utils/SaveDataInStorage";
-import { THEME } from "../../theme";
+import { THEME, THEME_DARK } from "../../theme";
+import { GetDataInStorage } from "../../utils/GetDataInStorage";
+import { setDarkMode } from "../../context/darkMode";
 
 export function Home() {
   const dispatch = useDispatch();
+  const { darkMode } = useSelector((state: any) => state.darkMode);
   const { username } = useSelector((state: any) => state.username);
   const { favoritesRepositories } = useSelector(
     (state: any) => state.favoritesRepositories
@@ -40,6 +43,22 @@ export function Home() {
       setRepositories([]);
     }
   }
+
+  async function getTheme() {
+    const isDarkMode = GetDataInStorage("darkmode");
+
+    if (isDarkMode) {
+      dispatch(setDarkMode(true));
+      SaveDataInStorage("darkmode", true);
+    } else {
+      dispatch(setDarkMode(false));
+      SaveDataInStorage("darkmode", false);
+    }
+  }
+
+  useEffect(() => {
+    getTheme();
+  }, []);
 
   useEffect(() => {
     getRepos();
@@ -79,13 +98,27 @@ export function Home() {
 
   return (
     <Background>
+      <StatusBar
+        barStyle={darkMode ? "light-content" : "dark-content"}
+        backgroundColor={darkMode ? "#181616" : "transparent"}
+      />
       <Header showModal={showModal} />
       {repositories.length === 0 ? (
         <View style={styles.containerEmpty}>
-          <Text style={styles.textFavoriteListEmpty}>
+          <Text
+            style={
+              darkMode
+                ? stylesDark.textFavoriteListEmpty
+                : styles.textFavoriteListEmpty
+            }
+          >
             Nenhum repositório encontrado... Busque por um repositório clicando
             no icone acima{" "}
-            <Ionicons name="settings" size={20} color={THEME.COLORS.TEXT} />
+            <Ionicons
+              name="settings"
+              size={20}
+              color={darkMode ? THEME_DARK.COLORS.TEXT : THEME.COLORS.TEXT}
+            />
           </Text>
         </View>
       ) : (

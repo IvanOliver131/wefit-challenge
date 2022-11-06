@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import miniLogo from "../../assets/mini-logo.png";
 import { THEME } from "../../theme";
 
-import { styles } from "./styles";
+import { styles, stylesDark } from "./styles";
 
 export interface RepositoryProps {
   id: number;
@@ -29,6 +29,7 @@ export function CardRepository({
   handleAddOrRemoveToFavoriteList,
   favoriteScreen,
 }: CardRepositoryProps) {
+  const { darkMode } = useSelector((state: any) => state.darkMode);
   const { favoritesRepositories } = useSelector(
     (state: any) => state.favoritesRepositories
   );
@@ -42,10 +43,16 @@ export function CardRepository({
 
   return (
     <TouchableOpacity onPress={() => handleOpenDetails(data)}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text numberOfLines={1} style={styles.title}>
-            {fullNames[0]}/<Text style={styles.titleBold}>{fullNames[1]}</Text>
+      <View style={darkMode ? stylesDark.container : styles.container}>
+        <View style={darkMode ? stylesDark.header : styles.header}>
+          <Text
+            numberOfLines={1}
+            style={darkMode ? stylesDark.title : styles.title}
+          >
+            {fullNames[0]}/
+            <Text style={darkMode ? stylesDark.titleBold : styles.titleBold}>
+              {fullNames[1]}
+            </Text>
           </Text>
           <Image source={miniLogo} style={styles.logo} />
         </View>

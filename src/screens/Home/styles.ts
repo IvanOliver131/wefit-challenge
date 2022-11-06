@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { THEME } from "../../theme";
+import { THEME, THEME_DARK } from "../../theme";
 
 export const styles = StyleSheet.create({
   containerEmpty: {
@@ -18,5 +18,14 @@ export const styles = StyleSheet.create({
   contentList: {
     paddingHorizontal: 16,
     paddingVertical: 12,
+  },
+});
+
+export const stylesDark = StyleSheet.create({
+  textFavoriteListEmpty: {
+    fontSize: THEME_DARK.FONT_SIZE.MD,
+    fontFamily: THEME_DARK.FONT_FAMILY.SEMI_BOLD,
+    color: THEME_DARK.COLORS.TEXT,
+    textAlign: "center",
   },
 });
