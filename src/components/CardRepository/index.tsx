@@ -1,12 +1,27 @@
 import { useNavigation } from "@react-navigation/native";
-import { Image, Text, TouchableOpacity, View } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import miniLogo from "../../assets/mini-logo.png";
-import { THEME } from "../../theme";
 
-import { styles } from "./styles";
+import {
+  ButtonDesfavorite,
+  ButtonFavorite,
+  CardRepositoryContainer,
+  CardRepositoryHeader,
+  ChildText,
+  CodeLanguage,
+  Description,
+  Divider,
+  FavoriteCount,
+  FooterCardRepository,
+  HeaderTitle,
+  HeaderTitleBold,
+  Logo,
+  TextDesfavorite,
+  TextFavorite,
+  TouchableContainer,
+} from "./styles";
 
 export interface RepositoryProps {
   id: number;
@@ -41,75 +56,73 @@ export function CardRepository({
   }
 
   return (
-    <TouchableOpacity onPress={() => handleOpenDetails(data)}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text numberOfLines={1} style={styles.title}>
-            {fullNames[0]}/<Text style={styles.titleBold}>{fullNames[1]}</Text>
-          </Text>
-          <Image source={miniLogo} style={styles.logo} />
-        </View>
-        <View style={styles.divider} />
-        <Text style={styles.description} numberOfLines={2}>
-          {data.description}
-        </Text>
-        <View style={styles.footer}>
+    <TouchableContainer onPress={() => handleOpenDetails(data)}>
+      <CardRepositoryContainer>
+        <CardRepositoryHeader>
+          <HeaderTitle numberOfLines={1}>
+            {fullNames[0]}/<HeaderTitleBold>{fullNames[1]}</HeaderTitleBold>
+          </HeaderTitle>
+          <Logo source={miniLogo} />
+        </CardRepositoryHeader>
+
+        <Divider />
+
+        <Description numberOfLines={2}>{data.description}</Description>
+        <FooterCardRepository>
           {!favoriteScreen && (
             <>
               {favoritesRepositories.find(
                 (favoriteRepository: RepositoryProps) =>
                   favoriteRepository.id === data.id
               ) ? (
-                <TouchableOpacity
-                  style={styles.buttonDesfavorite}
+                <ButtonDesfavorite
                   onPress={() => handleAddOrRemoveToFavoriteList(data)}
                 >
                   <Ionicons
                     name="star"
-                    color={THEME.COLORS.TEXT}
+                    color="#000000"
                     size={20}
-                    style={styles.child}
+                    style={{ marginRight: 6 }}
                   />
-                  <Text style={styles.buttonTextDesfavorite}>Desfavoritar</Text>
-                </TouchableOpacity>
+                  <TextDesfavorite>Desfavoritar</TextDesfavorite>
+                </ButtonDesfavorite>
               ) : (
-                <TouchableOpacity
-                  style={styles.button}
+                <ButtonFavorite
                   onPress={() => handleAddOrRemoveToFavoriteList(data)}
                 >
                   <Ionicons
                     name="star"
-                    color={THEME.COLORS.YELLOW}
+                    color="#FFD02C"
                     size={20}
-                    style={styles.child}
+                    style={{ marginRight: 6 }}
                   />
-                  <Text style={styles.buttonText}>Favoritar</Text>
-                </TouchableOpacity>
+                  <TextFavorite>Favoritar</TextFavorite>
+                </ButtonFavorite>
               )}
             </>
           )}
-          <View style={styles.favoriteCount}>
+          <FavoriteCount>
             <Ionicons
               name="star"
-              color={THEME.COLORS.YELLOW}
+              color="#FFD02C"
               size={20}
-              style={styles.child}
+              style={{ marginRight: 6 }}
             />
-            <Text style={styles.childText}>{data.watchers_count}</Text>
-          </View>
-          <View style={styles.codeLanguage}>
+            <ChildText>{data.watchers_count}</ChildText>
+          </FavoriteCount>
+          <CodeLanguage>
             <Ionicons
               name="ellipse"
-              color={THEME.COLORS.POINTER}
+              color="#F22828"
               size={16}
-              style={styles.child}
+              style={{ marginRight: 6 }}
             />
-            <Text style={styles.childText}>
+            <ChildText>
               {data.language ? data.language : "Indefinida"}
-            </Text>
-          </View>
-        </View>
-      </View>
-    </TouchableOpacity>
+            </ChildText>
+          </CodeLanguage>
+        </FooterCardRepository>
+      </CardRepositoryContainer>
+    </TouchableContainer>
   );
 }

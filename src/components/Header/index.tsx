@@ -17,7 +17,6 @@ export function Header({ showModal }: HeaderProps) {
   const { darkMode } = useSelector((state: any) => state.darkMode);
 
   function handleChangeMode() {
-    console.log(!darkMode);
     dispatch(setDarkMode(!darkMode));
     SaveDataInStorage("darkmode", !darkMode);
   }

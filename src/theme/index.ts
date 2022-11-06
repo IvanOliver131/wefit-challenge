@@ -1,4 +1,4 @@
-export const THEME_DARK = {
+export const THEME = {
   COLORS: {
     BACKGROUND: "#000000",
     BACKGROUND_NAVBAR_HEADER: "#181616",
@@ -36,7 +36,7 @@ export const THEME_DARK = {
     LG: 20,
   },
 };
-export const THEME = {
+export const THEME_ = {
   COLORS: {
     BACKGROUND: "#F6F6F5",
     BACKGROUND_NAVBAR_HEADER: "#FFFFFF",

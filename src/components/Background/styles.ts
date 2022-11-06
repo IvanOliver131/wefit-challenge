@@ -1,9 +1,7 @@
-import { StyleSheet } from "react-native";
-import { THEME } from "../../theme";
+import { View } from "react-native";
+import styled from "styled-components";
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: THEME.COLORS.BACKGROUND,
-  },
-});
+export const BackgroundContainer = styled(View)`
+  flex: 1;
+  background-color: ${(props) => props.theme.COLORS.BACKGROUND};
+`;
