@@ -2,10 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 
-import { THEME } from "../theme";
+import { THEME } from "../../theme";
 
-import { Favorites } from "../screens/Favorites";
-import { Home } from "../screens/Home";
+import { Favorites } from "../../screens/Favorites";
+import { Home } from "../../screens/Home";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,13 +26,10 @@ export function Tabs() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarStyle: showNavbar ? { height: 60 } : { display: "none" },
+        tabBarStyle: showNavbar
+          ? { backgroundColor: THEME.COLORS.BACKGROUND_NAVBAR_HEADER }
+          : { display: "none" },
         tabBarActiveTintColor: THEME.COLORS.ACTIVE,
-        tabBarLabelStyle: {
-          fontSize: 14,
-          lineHeight: 15,
-          marginBottom: 4,
-        },
         tabBarInactiveTintColor: THEME.COLORS.DESACTIVE,
         headerShown: false,
       })}

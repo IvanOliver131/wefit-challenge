@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, AsyncStorage, FlatList, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -18,6 +18,7 @@ import { setFavoritesRepositories } from "../../context/favoritesRepositories";
 import { styles } from "./styles";
 import { setShowNavbar } from "../../context/showNavbar";
 import { SaveDataInStorage } from "../../utils/SaveDataInStorage";
+import { THEME } from "../../theme";
 
 export function Home() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export function Home() {
       const { data } = await axios.get(
         `https://api.github.com/users/${username}/repos`
       );
+
       setRepositories(data);
     } catch (error) {
       setRepositories([]);
@@ -48,16 +50,26 @@ export function Home() {
     dispatch(setShowNavbar(false));
   }
 
-  async function handleAddToFavoriteList(repository: RepositoryProps) {
+  async function handleRemoveRepositoryInFavoriteList(
+    repository: RepositoryProps
+  ) {
+    const newFavorites = favoritesRepositories.filter(
+      (favoriteRepository: RepositoryProps) =>
+        favoriteRepository.id !== repository.id
+    );
+
+    await SaveDataInStorage("favorites", [...newFavorites]);
+    dispatch(setFavoritesRepositories([...newFavorites]));
+  }
+
+  async function handleAddOrRemoveToFavoriteList(repository: RepositoryProps) {
     for (const favoriteRepository of favoritesRepositories) {
       if (favoriteRepository.id === repository.id) {
-        return Alert.alert(
-          "Repositório já adicionado",
-          "O repositório favoritado já foi selecionado e está dentro dos seus favoritos",
-          [{ text: "OK", onPress: () => console.log() }]
-        );
+        handleRemoveRepositoryInFavoriteList(repository);
+        return;
       }
     }
+
     await SaveDataInStorage("favorites", [
       ...favoritesRepositories,
       repository,
@@ -72,7 +84,8 @@ export function Home() {
         <View style={styles.containerEmpty}>
           <Text style={styles.textFavoriteListEmpty}>
             Nenhum repositório encontrado... Busque por um repositório clicando
-            no icone acima <Ionicons name="settings" size={20} color="black" />
+            no icone acima{" "}
+            <Ionicons name="settings" size={20} color={THEME.COLORS.TEXT} />
           </Text>
         </View>
       ) : (
@@ -82,7 +95,7 @@ export function Home() {
           renderItem={({ item }) => (
             <CardRepository
               data={item}
-              handleAddToFavoriteList={handleAddToFavoriteList}
+              handleAddOrRemoveToFavoriteList={handleAddOrRemoveToFavoriteList}
               favoriteScreen={false}
             />
           )}

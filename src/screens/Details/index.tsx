@@ -38,6 +38,7 @@ export function Details() {
     const newFavorites = favoritesRepositories.filter(
       (repository: RepositoryProps) => repository.id !== id
     );
+
     await SaveDataInStorage("favorites", [...newFavorites]);
     dispatch(setFavoritesRepositories([...newFavorites]));
     setFavorite(false);

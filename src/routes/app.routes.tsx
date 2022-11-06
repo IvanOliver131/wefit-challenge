@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { THEME } from "../theme";
 
 import { Details } from "../screens/Details";
-import { Tabs } from "./tabs";
+import { Tabs } from "./Tabs";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +21,9 @@ export function AppRoutes() {
         component={Details}
         options={{
           headerTitle: "Detalhes",
-          headerTintColor: THEME.COLORS.WHITE,
+          headerTintColor: THEME.COLORS.DETAILS_TEXT,
           headerStyle: {
-            backgroundColor: "black",
+            backgroundColor: THEME.COLORS.BACKGROUND_DETAILS_TAB,
           },
         }}
       />

@@ -5,6 +5,7 @@ export interface DetailsParams {
   watchers_count: string;
   language: string;
   svn_url: string;
+  isFavorited: boolean;
 }
 
 export declare global {

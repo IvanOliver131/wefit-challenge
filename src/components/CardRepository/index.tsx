@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
 
 import miniLogo from "../../assets/mini-logo.png";
 import { THEME } from "../../theme";
@@ -14,19 +15,23 @@ export interface RepositoryProps {
   watchers_count: string;
   language: string;
   svn_url: string;
+  isFavorited: boolean;
 }
 
 interface CardRepositoryProps {
   data: RepositoryProps;
-  handleAddToFavoriteList?: (repository: RepositoryProps) => void;
+  handleAddOrRemoveToFavoriteList?: (repository: RepositoryProps) => void;
   favoriteScreen: boolean;
 }
 
 export function CardRepository({
   data,
-  handleAddToFavoriteList,
+  handleAddOrRemoveToFavoriteList,
   favoriteScreen,
 }: CardRepositoryProps) {
+  const { favoritesRepositories } = useSelector(
+    (state: any) => state.favoritesRepositories
+  );
   const navigation = useNavigation();
   const re = /\s*\/\s*/;
   const fullNames = data.full_name.split(re);
@@ -39,7 +44,7 @@ export function CardRepository({
     <TouchableOpacity onPress={() => handleOpenDetails(data)}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text numberOfLines={1}>
+          <Text numberOfLines={1} style={styles.title}>
             {fullNames[0]}/<Text style={styles.titleBold}>{fullNames[1]}</Text>
           </Text>
           <Image source={miniLogo} style={styles.logo} />
@@ -50,18 +55,38 @@ export function CardRepository({
         </Text>
         <View style={styles.footer}>
           {!favoriteScreen && (
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleAddToFavoriteList(data)}
-            >
-              <Ionicons
-                name="star"
-                color={THEME.COLORS.YELLOW}
-                size={20}
-                style={styles.child}
-              />
-              <Text style={styles.buttonText}>Favoritar</Text>
-            </TouchableOpacity>
+            <>
+              {favoritesRepositories.find(
+                (favoriteRepository: RepositoryProps) =>
+                  favoriteRepository.id === data.id
+              ) ? (
+                <TouchableOpacity
+                  style={styles.buttonDesfavorite}
+                  onPress={() => handleAddOrRemoveToFavoriteList(data)}
+                >
+                  <Ionicons
+                    name="star"
+                    color={THEME.COLORS.TEXT}
+                    size={20}
+                    style={styles.child}
+                  />
+                  <Text style={styles.buttonTextDesfavorite}>Desfavoritar</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => handleAddOrRemoveToFavoriteList(data)}
+                >
+                  <Ionicons
+                    name="star"
+                    color={THEME.COLORS.YELLOW}
+                    size={20}
+                    style={styles.child}
+                  />
+                  <Text style={styles.buttonText}>Favoritar</Text>
+                </TouchableOpacity>
+              )}
+            </>
           )}
           <View style={styles.favoriteCount}>
             <Ionicons
@@ -79,7 +104,9 @@ export function CardRepository({
               size={16}
               style={styles.child}
             />
-            <Text style={styles.childText}>{data.language}</Text>
+            <Text style={styles.childText}>
+              {data.language ? data.language : "Indefinida"}
+            </Text>
           </View>
         </View>
       </View>

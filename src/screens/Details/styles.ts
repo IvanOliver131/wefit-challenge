@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   details: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: THEME.COLORS.WHITE,
+    backgroundColor: THEME.COLORS.BACKGROUND_DETAILS_INFO,
   },
   title: {
     color: THEME.COLORS.TEXT,

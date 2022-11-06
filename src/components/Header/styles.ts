@@ -9,7 +9,9 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: THEME.COLORS.WHITE,
+    backgroundColor: THEME.COLORS.BACKGROUND_NAVBAR_HEADER,
+    borderBottomWidth: 0.5,
+    borderBottomColor: THEME.COLORS.DIVIDER,
   },
   title: {
     color: THEME.COLORS.TEXT,

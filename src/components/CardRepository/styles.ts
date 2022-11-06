@@ -3,8 +3,8 @@ import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: THEME.COLORS.WHITE,
-    height: 186,
+    backgroundColor: THEME.COLORS.BACKGROUND_CARD,
+    height: 190,
     borderRadius: 4,
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -20,11 +20,16 @@ export const styles = StyleSheet.create({
     fontFamily: THEME.FONT_FAMILY.REGULAR,
     paddingVertical: 12,
   },
+  title: {
+    color: THEME.COLORS.TEXT,
+    fontFamily: THEME.FONT_FAMILY.REGULAR,
+  },
   titleBold: {
     fontFamily: THEME.FONT_FAMILY.BOLD,
+    color: THEME.COLORS.TEXT,
   },
   divider: {
-    borderBottomColor: THEME.COLORS.CAPTION_300,
+    borderBottomColor: THEME.COLORS.DIVIDER,
     borderBottomWidth: 1,
   },
   description: {
@@ -51,8 +56,20 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 6,
   },
+  buttonDesfavorite: {
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: THEME.COLORS.WHITE,
+    borderWidth: 1,
+    borderColor: THEME.COLORS.TEXT,
+    borderRadius: 4,
+    padding: 6,
+  },
   buttonText: {
     color: THEME.COLORS.YELLOW,
+  },
+  buttonTextDesfavorite: {
+    color: THEME.COLORS.TEXT,
   },
   favoriteCount: {
     alignItems: "center",
